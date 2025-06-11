@@ -1,0 +1,4 @@
+terraform/.terraform/
+*.log
+*.tmp
+node_modules/

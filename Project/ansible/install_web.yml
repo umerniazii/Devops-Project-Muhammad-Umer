@@ -1,0 +1,21 @@
+- name: Setup web server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        update_cache: yes
+
+    - name: Copy index.html
+      copy:
+        src: ../app/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
